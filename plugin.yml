@@ -1,0 +1,26 @@
+name: PauseGame
+api: 3.0.0
+main: blackjack200\pausegame\PauseGame
+version: 0.0.1
+mcpe-protocol:
+  - 414
+  - 415
+  - 416
+  - 417
+  - 418
+  - 419
+  - 420
+  - 421
+  - 422
+  - 423
+  - 424
+  - 425
+  - 426
+  - 427
+  - 428
+permissions:
+  blackjack200:
+    children:
+      pausegame.pause:
+        description: Pause Player Game
+        default: op
