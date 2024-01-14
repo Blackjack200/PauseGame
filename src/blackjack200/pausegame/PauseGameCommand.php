@@ -8,6 +8,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\utils\InvalidCommandSyntaxException;
 use pocketmine\network\mcpe\protocol\LevelEventPacket;
+use pocketmine\network\mcpe\protocol\types\LevelEvent;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
@@ -26,19 +27,19 @@ class PauseGameCommand extends Command {
 			if (!in_array($flg, ['pause', 'resume', 'p', 'r'])) {
 				throw new InvalidCommandSyntaxException();
 			}
-			$player = Server::getInstance()->getPlayer($name);
+			$player = Server::getInstance()->getPlayerByPrefix($name);
 			if ($player === null) {
 				$sender->sendMessage(TextFormat::RED . "Player '$name' is not online");
 				return;
 			}
 			$pk = new LevelEventPacket();
-			$pk->evid = LevelEventPacket::EVENT_PAUSE_GAME;
+			$pk->eventId = LevelEvent::PAUSE_GAME;
 			if ($flg === 'pause' || $flg === 'p') {
-				$pk->data = 1;
+				$pk->eventData = 1;
 			} else {
-				$pk->data = 0;
+				$pk->eventData = 0;
 			}
-			$player->sendDataPacket($pk);
+			$player->getNetworkSession()->sendDataPacket($pk);
 			$sender->sendMessage(TextFormat::GREEN . "Success $flg Player '{$player->getName()}' Game");
 		}
 	}
