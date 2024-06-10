@@ -3,8 +3,6 @@ api: 5.0.0
 main: blackjack200\pausegame\PauseGame
 version: 0.0.1
 permissions:
-  blackjack200:
-    children:
-      pausegame.pause:
-        description: Pause Player Game
-        default: op
+  pausegame.pause:
+    description: Pause Player Game
+    default: op

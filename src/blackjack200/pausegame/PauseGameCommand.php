@@ -15,7 +15,7 @@ use pocketmine\utils\TextFormat;
 class PauseGameCommand extends Command {
 	public function __construct() {
 		parent::__construct('pause', 'Pause Player Game', '/pause <pause/resume> <name>');
-		$this->setPermission('blackjack200.pausegame.pause');
+		$this->setPermission('pausegame.pause');
 	}
 
 	public function execute(CommandSender $sender, string $commandLabel, array $args) {
@@ -24,6 +24,7 @@ class PauseGameCommand extends Command {
 				throw new InvalidCommandSyntaxException();
 			}
 			[$flg, $name] = $args;
+			$flg = strtolower($flg);
 			if (!in_array($flg, ['pause', 'resume', 'p', 'r'])) {
 				throw new InvalidCommandSyntaxException();
 			}

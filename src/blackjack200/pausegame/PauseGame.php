@@ -9,6 +9,6 @@ use pocketmine\Server;
 
 class PauseGame extends PluginBase {
 	public function onEnable() : void {
-		Server::getInstance()->getCommandMap()->register('', new PauseGameCommand());
+		Server::getInstance()->getCommandMap()->register($this->getName(), new PauseGameCommand());
 	}
 }
